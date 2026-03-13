@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumière et Sel</title>
+  <meta name="description" content="Lumière et Sel | 이야기와 쉼이 머무는 공간 | Ceramic Studio" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+:root{
+  --bg:#ffffff;
+  --text:#1f1c19;
+  --muted:#6d655f;
+  --line:#e8e2dc;
+  --soft:#f7f4f1;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Sans KR',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.8;
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;width:100%}
+a{color:inherit;text-decoration:none}
+
+/* ─── Header ─── */
+.site-header{
+  position:fixed;top:0;left:0;width:100%;z-index:30;
+  background:rgba(255,255,255,0.88);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid transparent;transition:.25s ease;
+}
+.site-header.scrolled{border-color:var(--line)}
+.header-inner{
+  max-width:1180px;margin:0 auto;padding:14px 28px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.brand{
+  display:flex;align-items:center;gap:10px;
+  font-family:'Cormorant Garamond','Noto Sans KR',serif;font-size:26px;letter-spacing:.02em;
+}
+.brand-logo{width:30px;height:30px;object-fit:contain}
+.nav-links{display:flex;gap:24px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.nav-links a{position:relative;padding:4px 0}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--muted);transition:width .3s ease}
+.nav-links a:hover::after{width:100%}
+
+/* ─── Hero ─── */
+.hero-section{
+  position:relative;height:90vh;min-height:680px;overflow:hidden;
+  background:url("projects/about-hands/hero-icicle.png") center center / cover no-repeat;
+}
+.hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.22)}
+.hero-content{
+  position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);
+  z-index:2;text-align:center;color:#f3f3f3;width:min(90%,520px);
+}
+.hero-content h1{
+  font-family:'Cormorant Garamond','Noto Sans KR',serif;
+  font-size:clamp(28px,6vw,52px);
+  font-weight:400;letter-spacing:.02em;margin:0 0 10px;
+}
+.hero-sub{font-size:18px;letter-spacing:.02em;margin:0}
+
+/* ─── Common ─── */
+.divider{width:100%;height:1px;background:var(--line)}
+.section-wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+.content-section{padding:120px 0}
+.section-head{text-align:center;margin-bottom:10px}
+.section-head span{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.section-head h2{font-family:'Cormorant Garamond','Noto Sans KR',serif;font-size:44px;font-weight:400;margin:0;letter-spacing:.02em}
+
+/* ─── About ─── */
+.about-section{max-width:1120px;margin:0 auto;padding:120px 28px}
+.about-tagline{text-align:center;font-size:20px;margin:40px 0 30px;font-weight:400;letter-spacing:.02em}
+.about-intro{max-width:720px;margin:0 auto 60px;text-align:center}
+.about-intro p{line-height:2.0;font-size:18px;margin-bottom:18px;color:#4a463f;letter-spacing:.01em}
+.about-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.about-card{
+  background:#fff;border:1px solid var(--line);border-radius:20px;
+  overflow:hidden;cursor:pointer;
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.about-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.06)}
+.about-thumb{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:#ece8e1}
+.about-info{padding:16px}
+.about-title{margin:0 0 4px;font-size:15px;font-weight:500;letter-spacing:.01em}
+.about-meta{margin:0;color:var(--muted);font-size:13px;letter-spacing:.01em}
+
+/* ─── Works ─── */
+.works-section{padding:120px 0}
+.works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+.works-grid img{width:100%;aspect-ratio:1/1;object-fit:cover;cursor:pointer;transition:opacity .3s ease}
+.works-grid img:hover{opacity:0.92}
+
+/* ─── Projects ─── */
+.projects-section{padding:120px 0}
+.project-list{max-width:960px;margin:0 auto}
+.project-block{padding:0 0 100px}
+.project-block:last-child{padding-bottom:0}
+.project-block-head{text-align:center;margin-bottom:36px}
+.project-block-head h3{font-family:'Noto Sans KR',sans-serif;font-size:28px;font-weight:500;margin:0 0 14px;letter-spacing:.02em}
+.project-block-head p{font-size:16px;line-height:1.9;color:#4b4641;margin:0;letter-spacing:.01em}
+.project-images{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;padding:0 20px}
+.project-images img{width:100%;aspect-ratio:4/3;object-fit:cover;cursor:pointer;transition:opacity .3s ease}
+.project-images img:hover{opacity:0.92}
+
+/* ─── CV ─── */
+.cv-section{max-width:1120px;margin:0 auto;padding:120px 28px}
+.cv-lead{text-align:center;font-size:17px;color:#4b4641;line-height:1.9;margin:30px 0 8px;letter-spacing:.01em}
+.cv-sub{text-align:center;color:var(--muted);font-size:14px;margin:0 0 10px;letter-spacing:.02em}
+.cv-box{
+  background:#fbf8f3;border:1px solid #e6ddd2;border-radius:28px;
+  padding:50px 44px;margin-top:40px;max-width:900px;margin-left:auto;margin-right:auto;
+}
+.cv-box-name{
+  font-family:'Noto Sans KR',sans-serif;font-size:26px;font-weight:500;
+  text-align:center;margin:0 0 6px;letter-spacing:.02em;
+}
+.cv-box-degree{text-align:center;color:var(--muted);font-size:14px;margin:0 0 40px;letter-spacing:.02em}
+.cv-inner{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+.cv-block{border-top:1px solid var(--line);padding-top:18px}
+.cv-block h4{
+  font-family:'Cormorant Garamond','Noto Sans KR',serif;font-size:20px;font-weight:500;
+  margin:0 0 12px;letter-spacing:.02em;
+}
+.cv-block ul{list-style:none;padding:0;margin:0}
+.cv-block li{font-size:15px;line-height:1.85;color:#4b4641;padding:2px 0;letter-spacing:.01em}
+
+/* ─── Footer ─── */
+footer{padding:24px 20px 56px;text-align:center;font-size:12px;color:#8d847d}
+
+/* ─── Lightbox ─── */
+.lightbox-overlay{
+  position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.92);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease;cursor:pointer;
+}
+.lightbox-overlay.active{opacity:1;visibility:visible}
+.lightbox-overlay img{
+  max-width:min(90vw,1200px);max-height:88vh;width:auto;object-fit:contain;border-radius:2px;cursor:default;
+  opacity:0;transform:scale(0.94);transition:opacity .35s ease .05s,transform .35s ease .05s;
+}
+.lightbox-overlay.active img{opacity:1;transform:scale(1)}
+.lightbox-close{position:fixed;top:24px;right:28px;z-index:102;width:40px;height:40px;background:none;border:none;cursor:pointer;padding:0}
+.lightbox-close::before,.lightbox-close::after{content:'';position:absolute;top:50%;left:50%;width:24px;height:1.5px;background:rgba(255,255,255,0.8);transition:background .2s ease}
+.lightbox-close::before{transform:translate(-50%,-50%) rotate(45deg)}
+.lightbox-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.lightbox-close:hover::before,.lightbox-close:hover::after{background:#fff}
+.lightbox-nav{position:fixed;top:50%;transform:translateY(-50%);z-index:102;width:48px;height:48px;background:none;border:none;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;opacity:.6;transition:opacity .2s ease}
+.lightbox-nav:hover{opacity:1}
+.lightbox-prev{left:16px}
+.lightbox-next{right:16px}
+.lightbox-nav svg{width:28px;height:28px;stroke:rgba(255,255,255,0.9);stroke-width:1.5;fill:none}
+.lightbox-counter{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:102;font-size:13px;letter-spacing:.12em;color:rgba(255,255,255,0.55);font-family:'Cormorant Garamond','Noto Sans KR',serif}
+
+/* ─── Scroll Reveal ─── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ─── Modal (about cards) ─── */
+.modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:26px;background:rgba(10,10,10,.82)}
+.modal.active{display:flex}
+.modal-panel{position:relative;max-width:min(1100px,100%);max-height:100%;display:flex;flex-direction:column;gap:14px;align-items:center}
+.modal-image{max-width:100%;max-height:78vh;object-fit:contain;border-radius:18px;background:#111;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.modal-caption{color:#f3f3f3;font-size:14px;text-align:center}
+.modal-close{position:absolute;top:-8px;right:-8px;width:42px;height:42px;border:0;border-radius:999px;background:#fff;color:#111;font-size:22px;cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,.22)}
+
+/* ─── Responsive ─── */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .hero-section{min-height:620px;height:86vh}
+  .hero-content{width:min(92%,420px)}
+  .hero-logo{width:190px}
+  .hero-sub{font-size:16px}
+  .content-section,.works-section,.projects-section{padding:80px 0}
+  .about-section,.cv-section{padding:80px 28px}
+  .section-head h2{font-size:36px}
+  .about-tagline{font-size:20px}
+  .about-intro p{font-size:16px}
+  .about-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .works-grid{grid-template-columns:repeat(2,1fr);gap:24px}
+  .project-images{gap:12px}
+  .project-block-head p{font-size:15px}
+  .cv-inner{grid-template-columns:1fr}
+  .cv-box{padding:32px 24px}
+}
+@media(max-width:500px){
+  .works-grid{grid-template-columns:1fr;gap:20px}
+  .project-images{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr}
+  .hero-logo{width:170px}
+  .hero-sub{font-size:15px}
+  .section-head h2{font-size:32px}
+  .brand{font-size:22px}
+  .brand-logo{width:26px;height:26px}
+}
+  </style>
+</head>
+<body>
+
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="#top" class="brand">
+        <img src="projects/about-hands/logo-silver.png" alt="로고" class="brand-logo">
+        Lumière et Sel
+      </a>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#works">Works</a>
+        <a href="#projects">Projects</a>
+        <a href="#cv">CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero-section" id="top">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Lumière et Sel</h1>
+        <p class="hero-sub">이야기와 쉼이 머무는 공간</p>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- About -->
+    <section id="about" class="about-section">
+      <div class="section-head reveal">
+        <span>About</span>
+        <h2>Lumière et Sel</h2>
+      </div>
+
+      <p class="about-tagline reveal">이야기와 쉼이 머무는 공간</p>
+
+      <div class="about-intro reveal">
+        <p>
+          루미에셀은 흙을 만지며 잠시 속도를 늦추고
+          자신의 이야기에 귀 기울일 수 있는 작은 도예 공간입니다.
+        </p>
+        <p>
+          각자의 속도로 흙을 만지고 형태를 만들며
+          잠시 멈추어 쉬고, 스스로와 마주하는 시간을 만들어갑니다.
+        </p>
+        <p>
+          완성된 작품보다
+          흙을 만지고 형태를 만들어가는 과정 속에서
+          느끼는 감각과 경험을 소중히 여깁니다.
+        </p>
+      </div>
+
+      <div class="about-grid" id="aboutGrid"></div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Works -->
+    <section id="works" class="works-section">
+      <div class="section-head reveal">
+        <span>Works</span>
+        <h2>Works</h2>
+      </div>
+      <div class="section-wrap" style="margin-top:40px">
+        <div class="works-grid">
+          <img src="works/w01.jpg" alt="work"><img src="works/w02.jpg" alt="work">
+          <img src="works/w03.jpg" alt="work"><img src="works/w04.jpg" alt="work">
+          <img src="works/w05.jpg" alt="work"><img src="works/w06.jpg" alt="work">
+          <img src="works/w07.jpg" alt="work"><img src="works/w08.jpg" alt="work">
+          <img src="works/w09.jpg" alt="work"><img src="works/w10.jpg" alt="work">
+          <img src="works/w11.jpg" alt="work"><img src="works/w12.jpg" alt="work">
+          <img src="works/w13.jpg" alt="work"><img src="works/w14.jpg" alt="work">
+          <img src="works/w15.jpg" alt="work"><img src="works/w16.jpg" alt="work">
+          <img src="works/w17.jpg" alt="work">
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Projects -->
+    <section id="projects" class="projects-section">
+      <div class="section-head reveal">
+        <span>Projects</span>
+        <h2>Projects</h2>
+      </div>
+      <div class="section-wrap" style="margin-top:40px">
+        <div class="project-list">
+
+          <article class="project-block reveal">
+            <div class="project-block-head">
+              <h3>파랑새를 찾아서</h3>
+              <p>경기 찾아가는 꿈의 학교 프로젝트.<br>장애인과 비장애인 형제자매가 도자 작업을 통해<br>각자의 이야기를 표현한 프로그램입니다.</p>
+            </div>
+            <div class="project-images">
+              <img src="projects/projects/blubird1.jpg" alt="파랑새를 찾아서">
+              <img src="projects/projects/bluebird2.jpg" alt="파랑새를 찾아서">
+            </div>
+          </article>
+
+          <article class="project-block reveal">
+            <div class="project-block-head">
+              <h3>원더우먼의 비밀화원</h3>
+              <p>ARTE 한국문화예술위원회 교육 프로그램.<br>유방암 환우와 가족들이 도자 작업을 통해<br>자신의 이야기를 표현하고 전시로 이어진 프로젝트입니다.</p>
+            </div>
+            <div class="project-images">
+              <img src="projects/projects/wonderwoman1.jpg" alt="원더우먼의 비밀화원">
+              <img src="projects/projects/wonderwoman2.jpg" alt="원더우먼의 비밀화원">
+              <img src="projects/projects/wonderwoman3.jpg" alt="원더우먼의 비밀화원">
+              <img src="projects/projects/wonderwoman4.jpg" alt="원더우먼의 비밀화원">
+            </div>
+          </article>
+
+          <article class="project-block reveal">
+            <div class="project-block-head">
+              <h3>소풍 1960</h3>
+              <p>사진과 도자를 통해 기억과 머물던 시간을 담아낸 메모리얼 전시입니다.</p>
+            </div>
+            <div class="project-images">
+              <img src="projects/projects/picnic1.jpg" alt="소풍 1960">
+              <img src="projects/projects/picnic2.jpg" alt="소풍 1960">
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CV -->
+    <section id="cv" class="cv-section">
+      <div class="section-head reveal">
+        <span>CV</span>
+        <h2>CV</h2>
+      </div>
+
+      <p class="cv-lead reveal">
+        도자 작업과 전시, 커뮤니티 기반 예술 교육 프로그램을 함께 진행하고 있습니다.
+      </p>
+
+      <div class="cv-box reveal">
+        <h3 class="cv-box-name">Ji-Ye Kim (김지예)</h3>
+        <p class="cv-box-degree">MFA in Ceramics · Seoul National University of Science and Technology</p>
+
+        <div class="cv-inner">
+          <div class="cv-block">
+            <h4>Qualification</h4>
+            <ul>
+              <li>도자기공예기능사</li>
+              <li>교원자격증 (도예)</li>
+              <li>아동미술전문지도사 2급</li>
+              <li>미술심리치료 상담사 2급</li>
+            </ul>
+          </div>
+
+          <div class="cv-block">
+            <h4>Exhibition</h4>
+            <ul>
+              <li>소풍 1960 메모리얼 전시</li>
+              <li>원더우먼의 비밀정원 전시</li>
+            </ul>
+          </div>
+
+          <div class="cv-block">
+            <h4>Projects</h4>
+            <ul>
+              <li>원더우먼의 비밀정원 — ARTE 한국문화예술위원회 교육 프로그램</li>
+              <li>파랑새를 찾아서 — 경기 찾아가는 꿈의 학교</li>
+            </ul>
+          </div>
+
+          <div class="cv-block">
+            <h4>Education / Workshop</h4>
+            <ul>
+              <li>경기도 남양주교육지원청 특수교육지원센터 도예 수업</li>
+              <li>루미에셀 도예공방 · Since 2016</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>© Lumière et Sel</footer>
+
+  <!-- Lightbox (Works + Projects) -->
+  <div class="lightbox-overlay" id="lightbox">
+    <button class="lightbox-close" aria-label="닫기"></button>
+    <button class="lightbox-nav lightbox-prev" aria-label="이전"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <img src="" alt="">
+    <button class="lightbox-nav lightbox-next" aria-label="다음"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
+    <div class="lightbox-counter"></div>
+  </div>
+
+  <!-- Modal (About cards) -->
+  <div class="modal" id="imageModal">
+    <div class="modal-panel">
+      <button class="modal-close" id="modalClose" aria-label="닫기">×</button>
+      <img class="modal-image" id="modalImage" src="" alt="">
+      <div class="modal-caption" id="modalCaption"></div>
+    </div>
+  </div>
+
+  <script>
+    /* Header */
+    var header=document.getElementById('siteHeader');
+    window.addEventListener('scroll',function(){header.classList.toggle('scrolled',window.scrollY>8)});
+
+    /* About cards */
+    var aboutData=[
+      {title:"Hands",meta:"Making Process",image:"projects/about-hands/about-hands.jpg"},
+      {title:"Studio Hands",meta:"Ceramic Studio",image:"projects/about-hands/about_studio2.jpg"},
+      {title:"Class",meta:"Ceramic Class",image:"projects/about-hands/about-class.jpg"},
+      {title:"Studio",meta:"Material & Object",image:"projects/about-hands/about-studio.jpg"}
+    ];
+    var aboutGrid=document.getElementById("aboutGrid");
+    var modal=document.getElementById("imageModal");
+    var modalImage=document.getElementById("modalImage");
+    var modalCaption=document.getElementById("modalCaption");
+    var modalClose=document.getElementById("modalClose");
+
+    function openModal(img,title,meta){modalImage.src=img;modalImage.alt=title;modalCaption.textContent=meta?title+" · "+meta:title;modal.classList.add("active");document.body.style.overflow="hidden"}
+    function closeModal(){modal.classList.remove("active");modalImage.src="";document.body.style.overflow=""}
+
+    aboutData.forEach(function(item){
+      var card=document.createElement("article");card.className="about-card";
+      card.innerHTML='<img src="'+item.image+'" alt="'+item.title+'" class="about-thumb"><div class="about-info"><h3 class="about-title">'+item.title+'</h3><p class="about-meta">'+item.meta+'</p></div>';
+      card.addEventListener("click",function(){openModal(item.image,item.title,item.meta)});
+      aboutGrid.appendChild(card);
+    });
+
+    modalClose.addEventListener("click",closeModal);
+    modal.addEventListener("click",function(e){if(e.target===modal)closeModal()});
+
+    /* Lightbox */
+    var lightbox=document.getElementById('lightbox');
+    var lbImg=lightbox.querySelector('img');
+    var lbCounter=lightbox.querySelector('.lightbox-counter');
+    var allImages=Array.from(document.querySelectorAll('.works-grid img,.project-images img'));
+    var ci=0;
+    function openLB(i){ci=i;lbImg.src=allImages[ci].src;lbCounter.textContent=(ci+1)+' / '+allImages.length;lightbox.classList.add('active');document.body.style.overflow='hidden'}
+    function closeLB(){lightbox.classList.remove('active');document.body.style.overflow=''}
+    function nav(d){ci=(ci+d+allImages.length)%allImages.length;lbImg.style.opacity='0';lbImg.style.transform='scale(0.96)';setTimeout(function(){lbImg.src=allImages[ci].src;lbCounter.textContent=(ci+1)+' / '+allImages.length;lbImg.style.opacity='1';lbImg.style.transform='scale(1)'},180)}
+    allImages.forEach(function(img,i){img.addEventListener('click',function(){openLB(i)})});
+    lightbox.querySelector('.lightbox-close').addEventListener('click',closeLB);
+    lightbox.querySelector('.lightbox-prev').addEventListener('click',function(e){e.stopPropagation();nav(-1)});
+    lightbox.querySelector('.lightbox-next').addEventListener('click',function(e){e.stopPropagation();nav(1)});
+    lightbox.addEventListener('click',function(e){if(e.target===lightbox)closeLB()});
+    document.addEventListener('keydown',function(e){if(lightbox.classList.contains('active')){if(e.key==='Escape')closeLB();if(e.key==='ArrowLeft')nav(-1);if(e.key==='ArrowRight')nav(1)}if(e.key==='Escape'&&modal.classList.contains('active'))closeModal()});
+    var tx=0;
+    lightbox.addEventListener('touchstart',function(e){tx=e.changedTouches[0].screenX},{passive:true});
+    lightbox.addEventListener('touchend',function(e){var d=e.changedTouches[0].screenX-tx;if(Math.abs(d)>50)nav(d>0?-1:1)});
+
+    /* Reveal */
+    var reveals=document.querySelectorAll('.reveal');
+    var obs=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('visible');obs.unobserve(entry.target)}})},{threshold:0.15});
+    reveals.forEach(function(el){obs.observe(el)});
+  </script>
+</body>
+</html>
